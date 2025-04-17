@@ -28,7 +28,7 @@ export class BasePage {
     const headerVPMModal = this.page.getByText('VPN лучше выключить: RUTUBE');
 
     if (await headerVPMModal.isVisible()) {
-      await this.page.getByLabel('закрыть', { exact: true });
+      await this.page.getByLabel('закрыть', { exact: true }).click();
     }
   }
 }
