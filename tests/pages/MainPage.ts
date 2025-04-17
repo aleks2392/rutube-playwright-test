@@ -4,7 +4,7 @@ import { BasePage } from './BasePage';
 export class MainPage extends BasePage {
   private readonly headerLocator: Locator;
   private readonly categoriesTabLocator: Locator;
-  private readonly menuLocator: Locator;
+  private readonly sideBarMenuLocator: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -15,7 +15,7 @@ export class MainPage extends BasePage {
         hasText: 'ГлавнаяРекомендацииФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ ',
       })
       .nth(1);
-    this.menuLocator = this.page.getByLabel('Облегченная панель навигации');
+    this.sideBarMenuLocator = this.page.getByLabel('Облегченная панель навигации');
   }
   async open() {
     await this.page.goto('https://rutube.ru/');
@@ -30,6 +30,10 @@ export class MainPage extends BasePage {
   }
 
   async menuHasCorrectAria() {
-    await expect(this.menuLocator).toHaveScreenshot('menuLocation.png');
+    if (await this.sideBarMenuLocator.isVisible()) {
+      await expect(this.sideBarMenuLocator).toHaveScreenshot('sideBarMenuLocator.png');
+    } else {
+      throw new Error('Menu is not visible');
+    }
   }
 }
