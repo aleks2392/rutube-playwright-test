@@ -12,7 +12,7 @@ export class MainPage extends BasePage {
     this.categoriesTabLocator = this.page
       .locator('main div')
       .filter({
-        hasText: 'ГлавнаяРекомендацииФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ ',
+        hasText: 'ГлавнаяРекомендацииФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ',
       })
       .nth(1);
     this.sideBarMenuLocator = this.page.getByLabel('Облегченная панель навигации');
